@@ -1,3 +1,13 @@
+import {
+  Box,
+  Flex,
+  Heading,
+  Link,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+
 import Form from "../../components/Form";
 import { loginSchema } from "../../schemas/yupSchemas";
 
@@ -7,20 +17,49 @@ const Login = () => {
       id: "email",
       name: "email",
       title: "Email",
+      type: "email",
       placeholder: "Insira seu email",
     },
     {
       id: "password",
       name: "password",
       title: "Senha",
+      type: "password",
       placeholder: "Insira sua senha",
     },
   ];
 
   return (
-    <>
-      <Form schema={loginSchema} fields={fields} />
-    </>
+    <Flex
+      minH={"100vh"}
+      align={"center"}
+      justify={"center"}
+      bg={useColorModeValue("gray.50", "gray.800")}
+    >
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+        <Stack align={"center"}>
+          <Heading fontSize={"4xl"} textAlign={"center"}>
+            Login
+          </Heading>
+        </Stack>
+        <Box
+          rounded={"lg"}
+          bg={useColorModeValue("white", "gray.700")}
+          boxShadow={"lg"}
+          p={8}
+        >
+          <Form schema={loginSchema} fields={fields} />
+          <Stack pt={6}>
+            <Text align={"center"}>
+              Não possui uma conta ainda?{" "}
+              <Link to="/register" color={"blue.400"}>
+                Cadastre-se
+              </Link>
+            </Text>
+          </Stack>
+        </Box>
+      </Stack>
+    </Flex>
   );
 };
 
