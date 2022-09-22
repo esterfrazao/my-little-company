@@ -7,6 +7,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
 import Form from "../../components/Form";
 import { loginSchema } from "../../schemas/yupSchemas";
@@ -37,11 +38,9 @@ const Login = () => {
       bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Login
-          </Heading>
-        </Stack>
+        <Heading fontSize={"4xl"} textAlign={"center"}>
+          Login
+        </Heading>
         <Box
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
@@ -51,9 +50,9 @@ const Login = () => {
           <Form schema={loginSchema} fields={fields} />
           <Stack pt={6}>
             <Text align={"center"}>
-              Não possui uma conta ainda?{" "}
-              <Link to="/register" color={"blue.400"}>
-                Cadastre-se
+              Não possui uma conta ainda?
+              <Link color="var(--light-blue)">
+                <NavLink to="/register">Cadastre-se</NavLink>
               </Link>
             </Text>
           </Stack>

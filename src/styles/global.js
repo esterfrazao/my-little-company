@@ -16,8 +16,8 @@ export default createGlobalStyle`
     :root {
         --light-blue: #a39bf0;
         --medium-blue1: #7a74bc;
-        --medium-blue-2: #645ea4;
-        --medium-blue-3: #544cb1 ;
+        --medium-blue2: #645ea4;
+        --medium-blue3: #544cb1 ;
         --dark-blue: #140c4c;
 
         --error: #DB4C25;
@@ -32,7 +32,7 @@ export default createGlobalStyle`
         background-color:  #ffffff00 ;
     }
     ::-webkit-scrollbar-thumb {
-        /* background: var(--blue); */
+        background: var(--medium-blue1);
         border-radius: 10px;
     }
     
