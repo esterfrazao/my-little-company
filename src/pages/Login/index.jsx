@@ -2,17 +2,18 @@ import {
   Box,
   Flex,
   Heading,
-  Link,
   Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Form from "../../components/Form";
+import { useAuth } from "../../providers/clients";
 import { loginSchema } from "../../schemas/yupSchemas";
 
 const Login = () => {
+  const { login } = useAuth;
   const fields = [
     {
       id: "email",
@@ -35,7 +36,7 @@ const Login = () => {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bg={useColorModeValue("var(--light-blue)", "var(--dark-blue)")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Heading fontSize={"4xl"} textAlign={"center"}>
@@ -47,13 +48,13 @@ const Login = () => {
           boxShadow={"lg"}
           p={8}
         >
-          <Form schema={loginSchema} fields={fields} />
+          <Form schema={loginSchema} fields={fields} callback={login} />
           <Stack pt={6}>
             <Text align={"center"}>
               Não possui uma conta ainda?
-              <Link color="var(--light-blue)">
-                <NavLink to="/register">Cadastre-se</NavLink>
-              </Link>
+              <Text color="var(--light-blue)">
+                <Link to="/register">Cadastre-se</Link>
+              </Text>
             </Text>
           </Stack>
         </Box>

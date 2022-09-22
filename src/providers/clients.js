@@ -4,7 +4,7 @@ import { success } from "../utils/toast";
 
 const ClientContext = createContext({});
 
-export const ClientProvidert = ({ children }) => {
+export const ClientProvider = ({ children }) => {
   const [token, setToken] = useState(
     localStorage.getItem("@MLCompany:token") || null
   );

@@ -2,16 +2,18 @@ import {
   Box,
   Flex,
   Heading,
-  Link as Span,
   Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Form from "../../components/Form";
+import { useAuth } from "../../providers/clients";
 import { registerSchema } from "../../schemas/yupSchemas";
 
 const Register = () => {
+  const { register } = useAuth();
+
   const fields = [
     {
       id: "name",
@@ -60,13 +62,13 @@ const Register = () => {
           boxShadow={"lg"}
           p={10}
         >
-          <Form schema={registerSchema} fields={fields} />
+          <Form schema={registerSchema} fields={fields} callback={register} />
           <Stack pt={6}>
             <Text align={"center"}>
               Já possui uma conta?
-              <Span color="var(--light-blue)">
+              <Text color="var(--light-blue)">
                 <Link to="/">Faça Login</Link>
-              </Span>
+              </Text>
             </Text>
           </Stack>
         </Box>

@@ -7,13 +7,10 @@ import {
   FormControl,
   Input,
   Button,
-  Box,
-  Stack,
-  useColorModeValue,
   Flex,
 } from "@chakra-ui/react";
 
-const Form = ({ schema, fields }) => {
+const Form = ({ schema, fields, callback }) => {
   const {
     handleSubmit,
     register,
@@ -23,7 +20,7 @@ const Form = ({ schema, fields }) => {
   });
 
   function onSubmit(data) {
-    return alert(JSON.stringify(data, null, 2));
+    callback(data);
   }
 
   return (

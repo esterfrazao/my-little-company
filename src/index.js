@@ -7,13 +7,13 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ChakraProvider>
-    <BrowserRouter>
-      <React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      <ChakraProvider>
         <App />
-      </React.StrictMode>
-    </BrowserRouter>
-  </ChakraProvider>
+      </ChakraProvider>
+    </React.StrictMode>
+  </BrowserRouter>
 );
 
 reportWebVitals();
