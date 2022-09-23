@@ -12,7 +12,7 @@ export const ClientProvider = ({ children }) => {
   const [clientInfo, setClientInfo] = useState({});
 
   useEffect(() => {
-    if (token) {
+    if (token !== "null" && token !== "undefined") {
       localStorage.setItem("@MLCompany:token", token);
       getClientData(token, setClientInfo);
     }

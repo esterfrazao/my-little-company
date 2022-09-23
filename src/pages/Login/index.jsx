@@ -13,7 +13,7 @@ import { useAuth } from "../../providers/clients";
 import { loginSchema } from "../../schemas/yupSchemas";
 
 const Login = () => {
-  const { login } = useAuth;
+  const { login } = useAuth();
   const fields = [
     {
       id: "email",
@@ -52,9 +52,9 @@ const Login = () => {
           <Stack pt={6}>
             <Text align={"center"}>
               Não possui uma conta ainda?
-              <Text color="var(--light-blue)">
+              <span style={{ color: "var(--light-blue)" }}>
                 <Link to="/register">Cadastre-se</Link>
-              </Text>
+              </span>
             </Text>
           </Stack>
         </Box>
