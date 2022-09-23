@@ -30,7 +30,7 @@ export const createContact = async (token, data) => {
   return response;
 };
 
-export const listContacts = async (token) => {
+export const listContacts = async (token, setContacts) => {
   const response = await api
     .get("/contacts", {
       headers: {
@@ -39,6 +39,7 @@ export const listContacts = async (token) => {
       },
     })
     .then((res) => {
+      setContacts(res.data);
       return res.data;
     });
   return response;

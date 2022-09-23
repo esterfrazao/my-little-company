@@ -14,3 +14,9 @@ export const registerSchema = yup.object().shape({
     .required("Campo Obrigatório")
     .max(15, "Número muito longo"),
 });
+
+export const createContactSchema = yup.object().shape({
+  name: yup.string().required("Campo Obrigatório"),
+  email: yup.string().email("Email Inválido"),
+  phone_number: yup.string().max(15, "Número muito longo"),
+});

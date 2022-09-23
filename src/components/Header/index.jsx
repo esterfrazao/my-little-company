@@ -28,7 +28,7 @@ const Header = () => {
       <Spacer />
       <HStack spacing="4" cursor="pointer" onClick={() => navigate("/profile")}>
         <Text fontSize="1.5rem" fontWeight="semibold">
-          {clientInfo.name.split(" ")[0]}
+          {clientInfo?.name?.split(" ")[0]}
         </Text>
         <BiLogIn onClick={logout} size="2rem" />
       </HStack>
