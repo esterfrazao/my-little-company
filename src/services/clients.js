@@ -5,20 +5,13 @@ export const loginClient = async (data) => {
   const response = await api
     .post("/login", data)
     .then((res) => {
-      localStorage.setItem("@MLCompany:token", res.data.accessToken);
+      localStorage.setItem("@MLCompany:token", res.data.token);
 
       success("Login realizado com sucesso!", null);
       return true;
     })
-    .catch((error) => {
-      console.log(error);
-      //   if (error.response.data === "Incorrect password") {
-      //     toast.error("Senha incorreta!");
-      //   } else if (error.response.data === "Cannot find user") {
-      //     toast.error("Email não cadastrado!");
-      //   } else {
-      //     toast.error("Algo deu errado!");
-      //   }
+    .catch((err) => {
+      error(err);
 
       return false;
     });
