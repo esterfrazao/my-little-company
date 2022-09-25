@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getClientData, loginClient, signUpClient } from "../services/clients";
 import { success } from "../utils/toast";
 
 const ClientContext = createContext({});
 
 export const ClientProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [token, setToken] = useState(
     localStorage.getItem("@MLCompany:token") || null
   );
@@ -12,7 +14,7 @@ export const ClientProvider = ({ children }) => {
   const [clientInfo, setClientInfo] = useState({});
 
   useEffect(() => {
-    if (token !== "null" && token !== "undefined") {
+    if (token !== "null" && token !== "undefined" && token !== null) {
       localStorage.setItem("@MLCompany:token", token);
       getClientData(token, setClientInfo);
     }
@@ -20,19 +22,19 @@ export const ClientProvider = ({ children }) => {
 
   const login = async (data) => {
     const response = await loginClient(data);
-    const accessToken = localStorage.getItem("@MLCompany:token");
-    setToken(accessToken);
 
     if (response) {
-      await getClientData(accessToken, setClientInfo);
+      setToken(response);
+      await getClientData(response, setClientInfo);
     }
   };
 
   const logout = () => {
-    localStorage.removeItem("@MLCompany:token");
-    success("Logout realizado com sucesso!", null);
+    localStorage.clear();
     setToken(null);
     setClientInfo({});
+    navigate("/");
+    success("Logout realizado com sucesso!", null);
   };
 
   const register = async (data) => {

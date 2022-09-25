@@ -8,7 +8,7 @@ export const loginClient = async (data) => {
       localStorage.setItem("@MLCompany:token", res.data.token);
 
       success("Login realizado com sucesso!", null);
-      return true;
+      return res.data.token;
     })
     .catch((err) => {
       error(err);

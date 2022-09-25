@@ -9,8 +9,9 @@ export const ContactsProvider = ({ children }) => {
   const { token } = useAuth();
 
   useEffect(() => {
-    listContacts(token, setContacts);
-  }, []);
+    if (token !== "null" && token !== "undefined" && token !== null)
+      listContacts(token, setContacts);
+  }, [token]);
 
   const addContact = (newContact) => {
     createContact(token, newContact);

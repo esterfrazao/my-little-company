@@ -10,8 +10,10 @@ const Router = () => {
   const { token } = useAuth();
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
-    if (token !== "null" && token !== "undefined") {
+    if (token !== "null" && token !== "undefined" && token !== null) {
       setAuthenticated(true);
+    } else {
+      setAuthenticated(false)
     }
   }, [token]);
   return (
