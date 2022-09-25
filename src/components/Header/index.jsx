@@ -26,11 +26,16 @@ const Header = () => {
         My Little Company
       </Heading>
       <Spacer />
-      <HStack spacing="4" cursor="pointer" onClick={() => navigate("/profile")}>
-        <Text fontSize="1.5rem" fontWeight="semibold">
+      <HStack spacing="4">
+        <Text
+          cursor="pointer"
+          fontSize="1.5rem"
+          fontWeight="semibold"
+          onClick={() => navigate("/profile")}
+        >
           {clientInfo?.name?.split(" ")[0]}
         </Text>
-        <BiLogIn onClick={logout} size="2rem" />
+        <BiLogIn cursor="pointer" onClick={logout} size="2rem" />
       </HStack>
     </Flex>
   );
