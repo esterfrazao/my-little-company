@@ -42,7 +42,7 @@ const Form = ({ schema, fields, callback }) => {
       <Flex justify="center">
         <Button
           mt={4}
-          colorScheme="purple"
+          colorScheme="whiteAlpha"
           isLoading={isSubmitting}
           type="submit"
         >
