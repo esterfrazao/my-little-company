@@ -5,7 +5,7 @@ export const loginClient = async (data) => {
   const response = await api
     .post("/login", data)
     .then((res) => {
-      localStorage.setItem("@MLCompany:token", res.data.token);
+      sessionStorage.setItem("@MLCompany:token", res.data.token);
 
       success("Login realizado com sucesso!", null);
       return res.data.token;
@@ -22,22 +22,15 @@ export const loginClient = async (data) => {
 export const signUpClient = async (data) => {
   const response = await api
     .post("/clients/register", data)
-    .then((res) => {
-      localStorage.setItem("@MLCompany:token", res.data.accessToken);
-
+    .then(() => {
       success(
         "Cadastro realizado com sucesso!",
         "Uma conta nova foi criada pra você!"
       );
       return true;
     })
-    .catch((error) => {
-      console.log(error);
-      //   if (error.response.data === "Email already exists") {
-      //     toast.error("Email já cadastrado!");
-      //   } else {
-      //     toast.error("Algo deu errado!");
-      //   }
+    .catch((err) => {
+      error(err);
 
       return false;
     });
@@ -73,11 +66,8 @@ export const patchClientData = async (data, id, token, setUserInfos) => {
       setUserInfos(res.data);
       return true;
     })
-    .catch((error) => {
-      console.log(error);
-      //   if (toastErrorMessage) {
-      //     toast.error(toastErrorMessage);
-      //   }
+    .catch((err) => {
+      error(err);
       return false;
     });
 

@@ -8,14 +8,14 @@ const ClientContext = createContext({});
 export const ClientProvider = ({ children }) => {
   const navigate = useNavigate();
   const [token, setToken] = useState(
-    localStorage.getItem("@MLCompany:token") || null
+    sessionStorage.getItem("@MLCompany:token") || null
   );
 
   const [clientInfo, setClientInfo] = useState({});
 
   useEffect(() => {
     if (token !== "null" && token !== "undefined" && token !== null) {
-      localStorage.setItem("@MLCompany:token", token);
+      sessionStorage.setItem("@MLCompany:token", token);
       getClientData(token, setClientInfo);
     }
   }, [token]);
@@ -30,7 +30,7 @@ export const ClientProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     setToken(null);
     setClientInfo({});
     navigate("/");
@@ -40,25 +40,6 @@ export const ClientProvider = ({ children }) => {
   const register = async (data) => {
     await signUpClient(data);
   };
-
-  // const changeClientInfos = async (
-  //   newData,
-  //   toastSucessMessage,
-  //   toastErrorMessage
-  // ) => {
-  //   const updateUserInfos = await patchUserData(
-  //     newData,
-  //     id,
-  //     token,
-  //     toastSucessMessage,
-  //     toastErrorMessage,
-  //     setUserInfos
-  //   );
-  //   if (updateUserInfos) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
 
   return (
     <ClientContext.Provider
