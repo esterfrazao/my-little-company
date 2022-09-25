@@ -19,9 +19,8 @@ import { useState } from "react";
 import PopoverButton from "../../components/PopOverButton";
 
 const Dashboard = ({ authenticated }) => {
-  const { contacts, addContact } = useContacts();
+  const { contacts, addContact, removeContact } = useContacts();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [contactId, setContactId] = useState(0);
 
   const form = {
     fields: [
@@ -49,10 +48,6 @@ const Dashboard = ({ authenticated }) => {
     ],
     schema: createContactSchema,
     callback: addContact,
-  };
-
-  const handleContact = (e) => {
-    setContactId(e.target.id);
   };
 
   if (!authenticated) {
@@ -95,10 +90,9 @@ const Dashboard = ({ authenticated }) => {
                 </Flex>
                 <Spacer />
                 <PopoverButton
-                  onClick={handleContact}
                   id={person.id}
                   icon={<IoIosTrash />}
-                  callback={(e) => console.log(e.target.id)}
+                  callback={(e) => removeContact(e.target.id)}
                 />
               </ListItem>
             ))}

@@ -1,5 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { listContacts, createContact } from "../services/contacts";
+import {
+  listContacts,
+  createContact,
+  deleteContact,
+} from "../services/contacts";
 import { useAuth } from "./clients";
 
 export const ContactsContext = createContext([]);
@@ -18,38 +22,17 @@ export const ContactsProvider = ({ children }) => {
     listContacts(token, setContacts);
   };
 
-  //   const editCategory = (categoryToBeEdited, editedCategory) => {
-  //     if (categories.includes(categoryToBeEdited)) {
-  //       const updatedCategories = categories.map((category) => {
-  //         if (category === categoryToBeEdited) {
-  //           category = editCategory;
-  //         }
-  //         return category;
-  //       });
-  //       setCategories(updatedCategories);
-  //       toast.success("Categoria editada com sucesso!");
-  //     } else {
-  //       toast.error("Categoria inexistente!");
-  //     }
-  //   };
-
-  //   const removeCategory = (categoryToBeRemoved) => {
-  //     if (categories.includes(categoryToBeRemoved)) {
-  //       const updatedCategories = categories.filter(
-  //         (category) => category !== categoryToBeRemoved
-  //       );
-  //       setCategories(updatedCategories);
-  //       toast.success("Categoria removida com sucesso!");
-  //     } else {
-  //       toast.error("Categoria inexistente!");
-  //     }
-  //   };
+  const removeContact = async (contactId) => {
+    await deleteContact(token, contactId);
+    listContacts(token, setContacts);
+  };
 
   return (
     <ContactsContext.Provider
       value={{
         contacts,
         addContact,
+        removeContact,
       }}
     >
       {children}

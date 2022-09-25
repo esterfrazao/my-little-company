@@ -16,13 +16,8 @@ export const createContact = async (token, data) => {
       );
       return res.data;
     })
-    .catch((error) => {
-      console.log(error);
-      //   if (error.response.data === "Email already exists") {
-      //     toast.error("Email já cadastrado!");
-      //   } else {
-      //     toast.error("Algo deu errado!");
-      //   }
+    .catch((err) => {
+      error(err);
 
       return false;
     });
@@ -42,5 +37,25 @@ export const listContacts = async (token, setContacts) => {
       setContacts(res.data);
       return res.data;
     });
+  return response;
+};
+
+export const deleteContact = async (token, contactId) => {
+  const response = await api
+    .delete(`contacts/${contactId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(() => {
+      success("Contato Excluído com sucesso", null);
+      return true;
+    })
+    .catch((err) => {
+      error(err);
+      return false;
+    });
+
   return response;
 };
