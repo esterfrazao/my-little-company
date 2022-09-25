@@ -43,19 +43,24 @@ const Register = ({ authenticated }) => {
   }
 
   return (
-    <Flex minH={"100vh"} align={"center"} justify={"center"} bg="gray.800">
+    <Flex
+      minH={"100vh"}
+      align={"center"}
+      justify={"center"}
+      bg="var(--dark-blue)"
+    >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={5} px={6}>
-        <Heading fontSize={"4xl"} textAlign={"center"}>
+        <Heading color="whiteAlpha.700" fontSize={"4xl"} textAlign={"center"}>
           Cadastro
         </Heading>
-        <Box rounded={"lg"} bg="gray.700" boxShadow={"lg"} p={10}>
+        <Box rounded={"lg"} bg="var(--medium-blue3)" boxShadow={"lg"} p={10}>
           <Form schema={registerSchema} fields={fields} callback={register} />
           <Stack pt={6}>
-            <Text align={"center"}>
+            <Text color="var(--dark-blue)" align={"center"}>
               Já possui uma conta?
-              <Text color="var(--light-blue)">
+              <span style={{ color: "var(--light-blue)" }}>
                 <Link to="/">Faça Login</Link>
-              </Text>
+              </span>
             </Text>
           </Stack>
         </Box>
