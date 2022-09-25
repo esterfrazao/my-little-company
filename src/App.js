@@ -1,13 +1,16 @@
+import Providers from "./providers";
 import Router from "./routes";
 import GlobalStyle from "./styles/global";
+import { ToastContainer } from "./utils/toast";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <Providers>
       <GlobalStyle />
       <Router />
-    </div>
+      <ToastContainer />
+    </Providers>
   );
-}
+};
 
 export default App;
