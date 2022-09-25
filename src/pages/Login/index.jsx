@@ -36,13 +36,13 @@ const Login = ({ authenticated }) => {
       bg="var(--dark-blue)"
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Heading fontSize={"4xl"} textAlign={"center"}>
+        <Heading color="whiteAlpha.700" fontSize={"4xl"} textAlign={"center"}>
           Login
         </Heading>
-        <Box rounded={"lg"} bg="gray.700" boxShadow={"lg"} p={8}>
+        <Box rounded={"lg"} bg="var(--medium-blue3)" boxShadow={"lg"} p={8}>
           <Form schema={loginSchema} fields={fields} callback={login} />
           <Stack pt={6}>
-            <Text align={"center"}>
+            <Text color="var(--dark-blue)" align={"center"}>
               Não possui uma conta ainda?
               <span style={{ color: "var(--light-blue)" }}>
                 <Link to="/register">Cadastre-se</Link>

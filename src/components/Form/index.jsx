@@ -5,10 +5,10 @@ import {
   FormErrorMessage,
   FormLabel,
   FormControl,
-  Input,
   Button,
   Flex,
 } from "@chakra-ui/react";
+import { CustomInput } from "./styles";
 
 const Form = ({ schema, fields, callback }) => {
   const {
@@ -26,9 +26,11 @@ const Form = ({ schema, fields, callback }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {fields?.map((input, i) => (
-        <FormControl key={i} isInvalid={errors[input.name]}>
-          <FormLabel htmlFor="name">{input.title}</FormLabel>
-          <Input
+        <FormControl key={i} marginBottom="15px" isInvalid={errors[input.name]}>
+          <FormLabel color="whiteAlpha.800" htmlFor="name">
+            {input.title}
+          </FormLabel>
+          <CustomInput
             type={input.type}
             id={input.id}
             placeholder={input.placeholder}
@@ -40,7 +42,7 @@ const Form = ({ schema, fields, callback }) => {
       <Flex justify="center">
         <Button
           mt={4}
-          colorScheme="teal"
+          colorScheme="purple"
           isLoading={isSubmitting}
           type="submit"
         >
